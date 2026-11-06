@@ -1,9 +1,16 @@
-FROM node:22-alpine
+
+FROM node:22-bookworm-slim
+
 WORKDIR /app
+
 COPY package*.json ./
-RUN npm install --omit=dev
+
+RUN npm ci --omit=dev
+
 COPY . .
-ENV PORT=3000
-EXPOSE 3000
-VOLUME ["/app/database"]
-CMD ["npm","start"]
+
+ENV PORT=3001
+
+EXPOSE 3001
+
+CMD ["npm", "start"]
